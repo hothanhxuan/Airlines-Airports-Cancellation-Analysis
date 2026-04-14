@@ -86,6 +86,7 @@ As illustrated, the schema connects the central `flights` fact table to various 
 - **`DimDate` ➔ `flights`**: The 1:* relationship linking calendar dates to a specific date field in the fact table, enabling powerful time-series intelligence.
 - **`airlines` ➔ `flights`**: The 1:* relationship matching the `IATA_CODE` in the dimension to the `AIRLINE` attribute in the fact table.
 - **`cancellation_codes` ➔ `flights`**: The 1:* relationship mapping the `CANCELLATION_REASON` to the fact table to drill down into specific flight cancellation causes.
+
 ![Image](https://github.com/user-attachments/assets/dc5ff959-7fd2-4ba7-b94b-b5a62ab53826)
 
 ---
