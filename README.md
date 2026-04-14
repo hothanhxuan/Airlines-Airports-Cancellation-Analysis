@@ -83,9 +83,9 @@ The data model is structured as a **Star Schema** within Power BI, integrating m
 #### Table Relationships
 As illustrated, the schema connects the central `flights` fact table to various dimension tables via **1-to-many (1:*) relationships**, with single-direction cross-filtering flowing from dimensions to the fact table:
 - **`airports` ➔ `flights`**: This acts as a **role-playing dimension** with two active/inactive relationship lines. One links the `airports` table to the `ORIGIN_AIRPORT` in the fact table, and the other links to the `DESTINATION_AIRPORT`. This dual relationship allows analyzing aviation logistics from both departure and arrival perspectives.
-- **`DimDate` ➔ `flights`**: A 1:* relationship linking calendar dates to a specific date field in the fact table, enabling powerful time-series intelligence.
-- **`airlines` ➔ `flights`**: A 1:* relationship matching the `IATA_CODE` in the dimension to the `AIRLINE` attribute in the fact table.
-- **`cancellation_codes` ➔ `flights`**: A 1:* relationship mapping the `CANCELLATION_REASON` to the fact table to drill down into specific flight cancellation causes.
+- **`DimDate` ➔ `flights`**: The 1:* relationship linking calendar dates to a specific date field in the fact table, enabling powerful time-series intelligence.
+- **`airlines` ➔ `flights`**: The 1:* relationship matching the `IATA_CODE` in the dimension to the `AIRLINE` attribute in the fact table.
+- **`cancellation_codes` ➔ `flights`**: The 1:* relationship mapping the `CANCELLATION_REASON` to the fact table to drill down into specific flight cancellation causes.
 ![Image](https://github.com/user-attachments/assets/dc5ff959-7fd2-4ba7-b94b-b5a62ab53826)
 
 ---
