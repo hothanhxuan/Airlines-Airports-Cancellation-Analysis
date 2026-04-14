@@ -124,13 +124,23 @@ The final page identifies structural temporal vulnerabilities across the year.
 
 ---
 ## 5.🔎 Final Conclusion & Recommendations
+### 🎯 Answers to Core Business Questions
+Before diving into the tactical roadmap, this analysis successfully resolves the 3 core business questions posed at the project's inception:
+1. **How efficiently are airlines operating?** The national system operates at an **82.1% On-Time Performance (OTP)**, but efficiency is highly polarized. Carriers like Hawaiian and Alaska perform exceptionally well (>87%), while low-cost carriers (Spirit, Frontier) drag down the network. 
+2. **What are the primary drivers of delays?** Contrary to popular belief, **72% of delay minutes are entirely controllable** by airlines (chiefly "Late Aircraft" cascading delays and internal "Airline Delays"). Weather only accounts for massive, isolated spikes (e.g., Q1 winter blizzards).
+3. **Which routes and airlines to optimize?** Optimization must aggressively target ultra-low-cost carriers (NK, F9), struggling regional subsidiaries (Envoy, ExpressJet), and overhaul scheduling for specific bottleneck routes like **DFW->HNL** and **ORD->ASE**.
+
 ### 🔑 Core Diagnosis: What the Data Tells Us
 This analysis consolidates **5.8M flights, 322 airports, and 14 carriers** into a unified performance picture. Three structural problems are driving delays and cancellations:
+
+**1. Cascading Late Aircraft Delays — The Turnaround Bottleneck**
 - Regional carriers are buckling under tight turnarounds. Data shows **Envoy Air (MQ)** hits a catastrophic 5.1% cancellation rate due to these cascading failures. Nearly 40% of all delay minutes are categorized as 'Late Aircraft'.
 - **Recommended Action:** Implement strategic buffer blocks in the afternoon schedules, potentially adding 10-15 minutes of scheduled ground time specifically for high-risk regional carriers running high-frequency routes (like DCA to JFK).
+
 **2. Systemic Susceptibility to Geographic Weather Constraints**
 - The network entirely breaks down during major winter anomalies. Data points precisely to **January 27th and March 5th** where massive blizzards caused nearly 3,000 cancellations in a single day each.
 - **Recommended Action:** Fleet managers must adopt dynamic re-routing algorithms for expected storm corridors at major mid-western hubs (like ORD) 48 hours in advance, avoiding catastrophes by proactively cancelling vulnerable routes like ORD->ASE (Aspen) which already averages 22.2 minutes of delay natively.
+
 **3. Sub-Optimal Taxi Times at Major Hubs**
 - Extensive ground congestion at coastal airports (JFK, LGA, SFO) contributes to high taxi-out times, burning excess jet fuel.
 - **Recommended Action:** Partner with FAA and Air Traffic Control to implement better pushback metering programs, holding aircraft at the gates rather than burning fuel in line on the tarmac.
