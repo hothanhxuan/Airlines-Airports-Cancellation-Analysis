@@ -3,7 +3,7 @@
 **Domain:**  
 Aviation and Transportation. 
 
-![Image](https://github.com/user-attachments/assets/028326d8-451e-49b8-9bca-63239119ff17)
+![Image](https://github.com/user-attachments/assets/f69c4fa2-218b-45c2-9b60-b10d0b72a390)
 
 Author: Susan Ho  
 Date: 2026-01-15  
