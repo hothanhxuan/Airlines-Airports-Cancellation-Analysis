@@ -95,7 +95,60 @@ As illustrated, the schema connects the central `flights` fact table to various 
 
 ---
 ## 4.📊 Key Insights & Visualizations
+This dashboard tells a comprehensive story of aviation performance and delays for 2015, highlighting both operational efficiency and the underlying causes of major disruption.
+![Image](https://github.com/user-attachments/assets/15b7edad-8e65-47c0-9059-042f38f445da)
+The landing page provides a high-level executive summary of the massive operational scale and the core issues discovered during the analysis.
+- **System Scale:** Tracked **5.82 million** total flights across **14** airlines and **322** airports.
+- **Delay Severity:** While the system achieved an overall **82.1% On-Time rate**, the 1.02 million delayed flights (17.9%) suffered an average arrival delay of **61 minutes**, indicating that delays were severe rather than minor deviations.
+- **Core Insight:** **72.0%** of all delay minutes stem from controllable factors within airline operations (Late Aircraft: 39.8%, Airline Delay: 32.2%), rather than uncontrollable weather or security events.
+![Image](https://github.com/user-attachments/assets/5d3f2cec-c5a3-4c50-bb89-74b4821d9f8d)
+This page breaks down the massive volume of flights and identifies which airlines drive the bottlenecks.
+- **Flight Categorization:** 4.71M On-time flights vs 1.02M Delayed flights. Cancellations accounted for 1.54% (89.88K flights).
+- **Delay Composition:** The Delay Breakdown pie chart heavily points to "Late Aircraft" (39.84%) and "Airline Delay" (32.22%) as the primary culprits. Weather delays account for merely 4.8%.
+- **Carrier Performance:** Major carriers like Southwest, American, and Delta contribute the highest raw volume of delays simply due to their scale. However, looking at severity, carriers like Frontier, United, and Spirit exhibit the highest Average Arrival Delays per flight.
+![Image](https://github.com/user-attachments/assets/e71970ec-6aa1-4327-acbf-078da2fe7b4d)
+This view drills down into the "Why" and "When" of flight disruptions.
+- **The "Controllable" Problem:** A stark visualization shows that roughly 72% of total delay minutes are controllable (Airline, Late Aircraft) vs 28% uncontrollable (Weather, NAS, Security).
+- **Time of Day Cascades:** The "Average Delay by Hour" chart reveals a classic cascading failure. Delays spike dramatically during the evening peak hours (16:00-19:59), accounting for **32%** of all delayed flights. Minor morning disruptions constantly snowball into severe evening bottlenecks.
+- **Late Aircraft Domino Effect:** Southwest Airlines is massively affected by Late Aircraft delays, given their point-to-point network structure and rapid turnaround goals.
+![Image](https://github.com/user-attachments/assets/8adb6897-e056-45e1-beeb-0fbbe124a0ea)
+Analyzing spatial congestion and airline risk levels via geographic mapping and scatter plots.
+- **High-Risk Carriers:** The scatter plot evaluating On-Time Rate vs Average Arrival Delay isolates "High Risk" airlines (low reliability + high delay duration) such as Frontier Airlines and Spirit Airlines, signaling an immediate need for operational review.
+- **Top Hub Bottlenecks:** The spatial maps pinpoint intense ground congestion and taxi-out times concentrated at major hubs like Chicago O'Hare (ORD) and New York airports, acting as choke points for the entire network
+- **The Most Bottlenecked Routes (Min 500 flights):** The absolute worst route for arrival delays is **DFW (Dallas) to HNL (Honolulu)** averaging a massive **28.5 minutes** delayed per flight. This is followed closely by weather-prone routes like **ORD to ASE (Aspen)** at 22.2 mins, and highly congested corridors like **DCA to JFK** at 20.9 mins.
+![Image](https://github.com/user-attachments/assets/5d889ef2-ce8a-4944-bdc3-88fbc54e6541)
+The final page identifies structural temporal vulnerabilities across the year.
+- **Winter and Summer Spikes:** Summer (29.97%) and Winter (27.11%) are the most disruptive seasons, driven by a mix of high passenger volume (Summer) and severe weather/snow storms (Winter).
+- **Day of Week Heatmap:** The highest concentrations of average delays consistently occur on Mondays and Thursdays in the late afternoon/evening blocks, pinpointing the exact hours where scheduling buffers need to be widened.
+- **Cancellation Extremes (The Winter Blizzards):** Filtering the exact dates reveals that **January 27th (2,884 cancellations)** and **March 5th (2,858 cancellations)** were the single worst days of the entire year, literally paralyzing the network in Q1.
 
+---
+## 5.🔎 Final Conclusion & Recommendations
+### 🔑 Core Diagnosis: What the Data Tells Us
+This analysis consolidates **5.8M flights, 322 airports, and 14 carriers** into a unified performance picture. Three structural problems are driving delays and cancellations:
+- Regional carriers are buckling under tight turnarounds. Data shows **Envoy Air (MQ)** hits a catastrophic 5.1% cancellation rate due to these cascading failures. Nearly 40% of all delay minutes are categorized as 'Late Aircraft'.
+- **Recommended Action:** Implement strategic buffer blocks in the afternoon schedules, potentially adding 10-15 minutes of scheduled ground time specifically for high-risk regional carriers running high-frequency routes (like DCA to JFK).
+**2. Systemic Susceptibility to Geographic Weather Constraints**
+- The network entirely breaks down during major winter anomalies. Data points precisely to **January 27th and March 5th** where massive blizzards caused nearly 3,000 cancellations in a single day each.
+- **Recommended Action:** Fleet managers must adopt dynamic re-routing algorithms for expected storm corridors at major mid-western hubs (like ORD) 48 hours in advance, avoiding catastrophes by proactively cancelling vulnerable routes like ORD->ASE (Aspen) which already averages 22.2 minutes of delay natively.
+**3. Sub-Optimal Taxi Times at Major Hubs**
+- Extensive ground congestion at coastal airports (JFK, LGA, SFO) contributes to high taxi-out times, burning excess jet fuel.
+- **Recommended Action:** Partner with FAA and Air Traffic Control to implement better pushback metering programs, holding aircraft at the gates rather than burning fuel in line on the tarmac.
+
+### 📋 Prioritized Action Roadmap
+| Priority | Action | Expected Impact | Timeline |
+|---|---|---|---|
+| 🔴 P1 | **Audit Regional Carrier Schedules:** Mandate immediate buffer block reviews for **Envoy Air (MQ)** and **ExpressJet (EV)** to reduce their >5% cancellation rates. | Recover Network Punctuality & Brand Trust | Immediate |
+| 🔴 P1 | **Targeted Route Restructuring:** Re-evaluate block times for the absolute worst-performing routes: **DFW->HNL**, **ORD->ASE**, and **DCA->JFK**. | Reduce "Late Aircraft" tail-delays on severe routes | Q3 Schedule |
+| 🟠 P2 | Redesign pushback sequencing at JFK and ORD | Reduce fuel burn and taxi-out bottlenecks at mega-hubs | Sprint 2 |
+| 🟠 P2 | **Predictive Winter Rerouting:** Build dynamic scheduling protocols modeled solely around historical catastrophe dates (e.g., Jan 27, Mar 5). | Mitigate total network paralysis during Q1 blizzards | Sprint 3 |
+| 🟡 P3 | Allocate spare aircraft (reserves) at high-delay hubs | Limit domino effect on late incoming flights | 6 Months |
+
+### 📊 Expected Business Impact
+If the P1 + P2 recommendations are executed:
+- **Cost savings from reduced fuel burn:** Millions of dollars annually per major carrier.
+- **OTP improvement:** Targeting an industry-wide push above 85% OTP.
+- **Customer satisfaction (NPS):** Significant reduction in passenger distress from cascading cancellations.
 ---
 ## 7.✨ More information 
 #### 🛠️ Workflow
