@@ -91,7 +91,13 @@ As illustrated, the schema connects the central `flights` fact table to various 
 
 ---
 ## 3.🧠 Design Thinking Process
-
+![Image](https://github.com/user-attachments/assets/38e06a17-a4d9-4640-b189-b32df9e0a5c4)
+![Image](https://github.com/user-attachments/assets/9bf49eaf-1838-4dc2-941c-2011ee570fb3)
+![Image](https://github.com/user-attachments/assets/ccbebf3d-aa1d-4e73-8e5c-e6c4266f54ad)
+![Image](https://github.com/user-attachments/assets/dda5c371-6f61-4dae-bf0f-807d422b7655)
+![Image](https://github.com/user-attachments/assets/7db437c0-d954-455b-bac7-465bc855cab3)
+![Image](https://github.com/user-attachments/assets/722682fd-d16c-4be6-bdd0-c5a138dd8149)
+![Image](https://github.com/user-attachments/assets/195b1960-a4c7-4429-93af-6a20d50634a7)
 
 ---
 ## 4.📊 Key Insights & Visualizations
