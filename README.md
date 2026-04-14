@@ -71,16 +71,22 @@ The Power BI data model follows a **fact–dimension structure** to support effi
 
 #### Data Model Structure
 The data model is structured as a **Star Schema** within Power BI, integrating multiple data sources to enable cross-filtering between flight operations and geographic/carrier outcomes.
-- **Fact Tables (Transactional Data)**:
-  - **`fact-flights`**: Records the core flight transactions. Contains granular flight details including `YEAR`, `MONTH`, `DAY`, `AIRLINE`, `ORIGIN_AIRPORT`, `DESTINATION_AIRPORT`, `SCHEDULED_DEPARTURE`, `DEPARTURE_TIME`, and actual delay metrics (`DEPARTURE_DELAY`, `ARRIVAL_DELAY`). This table serves as the primary source for calculating Total Volumes, Average Delays, and On-Time Performance.
+- **Fact Central Table (Transactional Data)**:
+  - **`flights`**: Records the core flight transactions. Contains granular flight details including dates, flight numbers, airline, origin/destination airports, and various additive operational metrics (Σ) like `DEPARTURE_DELAY`, `ARRIVAL_DELAY`, `AIR_SYSTEM_DELAY`, `WEATHER_DELAY`, `DISTANCE`, and `ELAPSED_TIME`.
 
 - **Dimension Tables (Lookup Data)**:
-  - **`dim-airports` (Airport Master):** The central location dimension linking flights to geography. Contains attributes like `IATA_CODE`, `AIRPORT` (Name), `CITY`, `STATE`, `LATITUDE`, and `LONGITUDE`.
-  - **`dim-airlines` (Carrier Overview):** Contains top-level airline information, linking the airline `IATA_CODE` to the full `AIRLINE` name (e.g., United Air Lines Inc., Delta Air Lines).
-  - **`dim-cancellation_codes` (Reason Master):** Maps cancellation indicators to human-readable descriptions (`A` = Airline/Carrier, `B` = Weather, `C` = National Air System, `D` = Security).
-  - **`dim_date` (Date Dimension):** A standard time-intelligence table extracted from the YEAR, MONTH, DAY fields, linking to the fact table, enabling chronological analysis and Month-over-Month comparisons.
+  - **`airports`:** The location dimension linking flights to geography. Contains attributes like `IATA_CODE`, `AIRPORT`, `CITY`, `STATE`, `COUNTRY`, `LATITUDE_NEW`, and `LONGITUDE_NEW`.
+  - **`airlines`:** Contains airline information, linking the `IATA_CODE` to the full `AIRLINE` name.
+  - **`cancellation_codes`:** Maps the `CANCELLATION_REASON` code to descriptive text (`CANCELLATION_DESCRIPTION`).
+  - **`DimDate`:** A standard time-intelligence table containing calculated fields like `Day`, `Day of Week`, `Month Name`, and `Is Weekend`.
 
 #### Table Relationships
+As illustrated, the schema connects the central `flights` fact table to various dimension tables via **1-to-many (1:*) relationships**, with single-direction cross-filtering flowing from dimensions to the fact table:
+- **`airports` ➔ `flights`**: This acts as a **role-playing dimension** with two active/inactive relationship lines. One links the `airports` table to the `ORIGIN_AIRPORT` in the fact table, and the other links to the `DESTINATION_AIRPORT`. This dual relationship allows analyzing aviation logistics from both departure and arrival perspectives.
+- **`DimDate` ➔ `flights`**: A 1:* relationship linking calendar dates to a specific date field in the fact table, enabling powerful time-series intelligence.
+- **`airlines` ➔ `flights`**: A 1:* relationship matching the `IATA_CODE` in the dimension to the `AIRLINE` attribute in the fact table.
+- **`cancellation_codes` ➔ `flights`**: A 1:* relationship mapping the `CANCELLATION_REASON` to the fact table to drill down into specific flight cancellation causes.
+![Image](https://github.com/user-attachments/assets/dc5ff959-7fd2-4ba7-b94b-b5a62ab53826)
 
 ---
 ## 3.🧠 Design Thinking Process
