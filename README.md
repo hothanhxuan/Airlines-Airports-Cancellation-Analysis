@@ -60,6 +60,9 @@ To ensure resources and fleet utilization are managed efficiently, management re
 ### 🔍 Data source Overview
 The dataset captures the domestic flight operations, airline catalogs, airport locations, and granular delay/cancellation performance across the US for the year 2015. 
 
+**Data Origin:** This dataset is the renowned **"2015 Flight Delays and Cancellations"** dataset sourced from **Kaggle**, originally published by the **U.S. Department of Transportation (US DOT)**. 
+- **Reference Link:** [2015 Flight Delays and Cancellations on Kaggle](https://www.kaggle.com/datasets/usdot/flight-delays)
+
 Across the primary tables, the dataset encompasses millions of flight records and essential lookup dimensions:
 - **`fact-flights`**: Over 5.8+ million records
 - **`dim-airports`**: ~322 records
